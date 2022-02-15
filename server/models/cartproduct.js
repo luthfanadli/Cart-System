@@ -15,8 +15,26 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   CartProduct.init({
-    cartId: DataTypes.INTEGER,
-    productId: DataTypes.INTEGER
+    cartId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: 'Carts',
+        key: 'id'
+      },
+      onDelete: 'CASCADE',
+      onUpdate: 'CASCADE',
+    },
+    productId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: 'Products',
+        key: 'id'
+      },
+      onDelete: 'CASCADE',
+      onUpdate: 'CASCADE',
+    }
   }, {
     sequelize,
     modelName: 'CartProduct',

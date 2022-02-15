@@ -37,6 +37,16 @@ class CartController {
             next(err)
         }
     }
+    static async createCart(req, res, next) {
+        try {
+            const { userId } = req.body
+            Cart.create({ userId })
+            res.status(201).json({ message: `Success create Cart with User Id ${userId}` })
+        } catch (err) {
+            console.log(err);
+            next(err)
+        }
+    }
 }
 
 module.exports = CartController;

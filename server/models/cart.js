@@ -15,7 +15,17 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Cart.init({
-    userId: DataTypes.INTEGER
+    userId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      unique: true,
+      references: {
+        model: 'Users',
+        key: 'id'
+      },
+      onDelete: 'CASCADE',
+      onUpdate: 'CASCADE',
+    }
   }, {
     sequelize,
     modelName: 'Cart',
